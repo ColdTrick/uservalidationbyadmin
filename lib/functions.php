@@ -14,7 +14,6 @@
 				if($user = get_user_by_username($username)){
 					// check if the user is enabled
 					if($user->isEnabled()){
-						
 						if($user->isAdmin()){
 							// admins can always login
 							$result = true;
@@ -24,7 +23,7 @@
 								access_get_show_hidden_status($hidden);
 								
 								// throw exception
-								throw LoginException(elgg_echo("uservalidationbyadmin:login:pam:failed"));
+								throw new LoginException(elgg_echo("uservalidationbyadmin_pam_handler:failed"));
 							} else {
 								// user is validated
 								$result = true;
@@ -34,6 +33,9 @@
 							$result = true;
 						}
 					}
+				} else {
+					// throw exception
+					throw new LoginException(elgg_echo("login:baduser"));
 				}
 				
 				// restore hidden status

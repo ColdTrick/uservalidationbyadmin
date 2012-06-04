@@ -15,7 +15,7 @@
 		'uservalidationbyadmin:settings:admin_notify:none' => "No notification",
 		
 		// login
-		'uservalidationbyadmin:login:error' => "Your account needs to be validated by an administrator, you'll be notified when this happens",
+		'uservalidationbyadmin_pam_handler:failed' => "Your account needs to be validated by an administrator, you'll be notified when this happens",
 		
 		// listing
 		'admin:users:pending_approval' => "Pending approval",

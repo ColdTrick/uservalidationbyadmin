@@ -52,3 +52,24 @@
 		// notify the admins about pending approvals
 		uservalidationbyadmin_notify_admins();
 	}
+	
+	/**
+	 * Adjust the error message from the PAM handler (to be translated)
+	 * 
+	 * @param string $hook
+	 * @param string $type
+	 * @param string $return_value
+	 * @param array $params
+	 * @return string
+	 */
+	function uservalidationbyadmin_auth_fail_hook($hook, $type, $return_value, $params){
+		$result = $return_value;
+		
+		// check if the translated text is different
+		$string = elgg_echo($result);
+		if($string != $result){
+			$result = $string;
+		}
+		
+		return $result;
+	}

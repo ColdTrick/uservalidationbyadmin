@@ -45,6 +45,7 @@
 	// register hooks
 	elgg_register_plugin_hook_handler("register", "user", "uservalidationbyadmin_register_user_hook");
 	elgg_register_plugin_hook_handler("permissions_check", "user", "uservalidationbyadmin_permissions_check_hook");
+	elgg_register_plugin_hook_handler("fail", "auth", "uservalidationbyadmin_auth_fail_hook");
 	
 	// register actions
 	elgg_register_action("uservalidationbyadmin/validate", dirname(__FILE__) . "/actions/validate.php", "admin");
