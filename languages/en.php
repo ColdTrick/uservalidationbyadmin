@@ -14,6 +14,9 @@
 		'uservalidationbyadmin:settings:admin_notify:weekly' => "Weekly",
 		'uservalidationbyadmin:settings:admin_notify:none' => "No notification",
 		
+		// login
+		'uservalidationbyadmin:login:error' => "Your account needs to be validated by an administrator, you'll be notified when this happens",
+		
 		// listing
 		'admin:users:pending_approval' => "Pending approval",
 		

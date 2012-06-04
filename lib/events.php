@@ -27,6 +27,12 @@
 			}
 		}
 		
+		// check if the user can login
+		if(empty($result)){
+			// register error
+			register_error(elgg_echo("uservalidationbyadmin:login:error"));
+		}
+		
 		// restore access setting
 		access_show_hidden_entities($hidden);
 		
