@@ -5,11 +5,29 @@
 	require_once(dirname(__FILE__) . "/lib/hooks.php");
 
 	function uservalidationbyadmin_init(){
+		global $USERVALIDATIONBYADMIN_ADMIN_NOTIFY_SETTING;
+		
 		// register pam handler to check authentication
 		register_pam_handler("uservalidationbyadmin_pam_handler", "required");
 		
 		// extend admin js
 		elgg_extend_view("js/admin", "uservalidationbyadmin/js/admin");
+		
+		$notify_admin = elgg_get_plugin_setting("admin_notify", "uservalidationbyadmin");
+		switch($notify_admin){
+			case "daily":
+			case "weekly":
+				$USERVALIDATIONBYADMIN_ADMIN_NOTIFY_SETTING = $notify_admin;
+				
+				elgg_register_plugin_hook_handler("cron", $notify_admin, "uservalidationbyadmin_cron_hook");
+				break;
+			case "direct":
+				$USERVALIDATIONBYADMIN_ADMIN_NOTIFY_SETTING = $notify_admin;
+				break;
+			default:
+				$USERVALIDATIONBYADMIN_ADMIN_NOTIFY_SETTING = "none";
+				break;
+		}
 	}
 	
 	function uservalidationbyadmin_pagesetup(){

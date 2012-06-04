@@ -47,3 +47,8 @@
 		
 		return $result;
 	}
+	
+	function uservalidationbyadmin_cron_hook($hook, $type, $return_value, $params){
+		// notify the admins about pending approvals
+		uservalidationbyadmin_notify_admins();
+	}

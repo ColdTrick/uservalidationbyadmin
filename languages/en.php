@@ -2,9 +2,19 @@
 
 	$english = array(
 		'uservalidationbyadmin' => "User validation by admin",
+		
+		// general stuff
 		'uservalidationbyadmin:validate' => "Validate",
 		'uservalidationbyadmin:validate:confirm' => "Are your sure you wish to validate this user?",
 		
+		// plugin settings
+		'uservalidationbyadmin:settings:admin_notify' => "When do you wish to receive a notification about users needing validation",
+		'uservalidationbyadmin:settings:admin_notify:direct' => "When a user registers",
+		'uservalidationbyadmin:settings:admin_notify:daily' => "Daily",
+		'uservalidationbyadmin:settings:admin_notify:weekly' => "Weekly",
+		'uservalidationbyadmin:settings:admin_notify:none' => "No notification",
+		
+		// listing
 		'admin:users:pending_approval' => "Pending approval",
 		
 		'uservalidationbyadmin:pending_approval:description' => "Below you can find a list of users who require your approval before they can use this community",
@@ -19,6 +29,12 @@
 Your account on %s has been validated, you can now start using the site.
 
 Go to: %s to start your experience.",
+
+		'uservalildationbyadmin:notify:admin:subject' => "Users are awaiting your approval",
+		'uservalildationbyadmin:notify:admin:message' => "Hi %s,
+
+%s users are awaiting your approval on %s.
+Please visit %s in order to approve/delete the users.",
 		
 		// actions
 		// validate

@@ -124,3 +124,59 @@
 		
 		return $result;
 	}
+	
+	function uservalidationbyadmin_notify_admins(){
+		global $USERVALIDATIONBYADMIN_ADMIN_NOTIFY_SETTING;
+		
+		if(!empty($USERVALIDATIONBYADMIN_ADMIN_NOTIFY_SETTING) && ($USERVALIDATIONBYADMIN_ADMIN_NOTIFY_SETTING != "none")){
+			// make sure we can see every user
+			$hidden = access_get_show_hidden_status();
+			access_show_hidden_entities(true);
+			
+			// get selection options
+			$options = uservalidationbyadmin_get_selection_options(true);
+			
+			if($user_count = elgg_get_entities_from_relationship($options)){
+				$site = elgg_get_site_entity();
+				
+				// there are unvalidated users, now find the admins to notify
+				$admin_options = array(
+					"type" => "user",
+					"limit" => false,
+					"site_guids" => false,
+					"relationship" => "member_of_site",
+					"relationship_guid" => $site->getGUID(),
+					"inverse_relationship" => true,
+					"joins" => array("JOIN " . elgg_get_config("dbprefix") . "users_entity ue ON e.guid = ue.guid"),
+					"wheres" => array("ue.admin = 'yes'")
+				);
+				
+				$admins = elgg_get_entities_from_relationship($admin_options);
+				
+				// trigger hook to adjust the admin list
+				$params = array(
+					"admins" => $admins,
+					"user_count" => $user_count
+				);
+				$admins = elgg_trigger_plugin_hook("notify_admin", "uservalidationbyadmin", $params, $admins);
+				
+				// notify the admins
+				if(!empty($admins)){
+					foreach($admins as $admin){
+						$subject = elgg_echo("uservalildationbyadmin:notify:admin:subject");
+						$msg = elgg_echo("uservalildationbyadmin:notify:admin:message", array(
+							$admin->name,
+							$user_count,
+							$site->name,
+							$site->getURL() . "admin/users/pending_approval"
+						));
+						
+						notify_user($admin->getGUID(), $site->getGUID(), $subject, $msg, null, "email");
+					}
+				}
+			}
+			
+			// restore hidden setting
+			access_show_hidden_entities($hidden);
+		}
+	}
