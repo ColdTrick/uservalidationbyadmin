@@ -109,3 +109,18 @@
 		
 		return $result;
 	}
+	
+	function uservalidationbyadmin_notify_validate_user(ElggUser $user){
+		$result = false;
+		
+		if(!empty($user) && elgg_instanceof($user, "user")){
+			$site = elgg_get_site_entity();
+			
+			$subject = elgg_echo("uservalidationbyadmin:notify:validate:subject", array($site->name));
+			$msg = elgg_echo("uservalidationbyadmin:notify:validate:message", array($user->name, $site->name, $site->url));
+			
+			$result = notify_user($user->getGUID(), $subject, $msg, null, "email");
+		}
+		
+		return $result;
+	}

@@ -16,12 +16,8 @@
 			}
 			
 			if($user->save()){
-				$site = elgg_get_site_entity();
-				
-				$subject = elgg_echo("uservalidationbyadmin:notify:validate:subject", array($site->name));
-				$msg = elgg_echo("uservalidationbyadmin:notify:validate:message", array($user->name, $site->name, $site->url));
-				
-				notify_user($user->getGUID(), $subject, $msg, null, "email");
+				// notify the user about the validation
+				uservalidationbyadmin_notify_validate_user($user);
 				
 				system_message(elgg_echo("uservalidationbyadmin:actions:validate:success", array($user->name)));
 			} else {

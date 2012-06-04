@@ -7,6 +7,9 @@
 	function uservalidationbyadmin_init(){
 		// register pam handler to check authentication
 		register_pam_handler("uservalidationbyadmin_pam_handler", "required");
+		
+		// extend admin js
+		elgg_extend_view("js/admin", "uservalidationbyadmin/js/admin");
 	}
 	
 	function uservalidationbyadmin_pagesetup(){

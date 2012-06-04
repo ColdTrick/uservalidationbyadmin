@@ -10,22 +10,25 @@
 		'uservalidationbyadmin:pending_approval:description' => "Below you can find a list of users who require your approval before they can use this community",
 		'uservalidationbyadmin:pending_approval:title' => "Users awaiting approval",
 		
+		'uservalidationbyadmin:bulk_action:select' => "Please select at least one user to perform this action",
+		
 		// notifiction
 		'uservalidationbyadmin:notify:validate:subject' => "Your account on %s has been approved",
 		'uservalidationbyadmin:notify:validate:message' => "Hi %s,
 
 Your account on %s has been validated, you can now start using the site.
 
-Go to: %s to start your experiance.",
+Go to: %s to start your experience.",
 		
 		// actions
 		// validate
 		'uservalidationbyadmin:actions:validate:error:save' => "An unknown error occured while validating %s",
 		'uservalidationbyadmin:actions:validate:success' => "%s has been validated",
 		
-		'' => "",
-		'' => "",
-		'' => "",
+		// bulk action
+		'uservalidationbyadmin:actions:bulk_action:error:invalid_action' => "The selected action is invalid",
+		'uservalidationbyadmin:actions:bulk_action:success:delete' => "Successfully deleted the users",
+		'uservalidationbyadmin:actions:bulk_action:success:validate' => "Successfully validated the users",
 		'' => "",
 	);
 
