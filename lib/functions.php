@@ -43,6 +43,11 @@
 			}
 		}
 		
+		// user is validated, but does the password checkout?
+		if($result){
+			pam_auth_userpass($credentials);
+		}
+		
 		return $result;
 	}
 	
