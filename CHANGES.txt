@@ -1,4 +1,8 @@
 = Version history =
+x.x:
+
+- fixed: confirmation email not sending
+
 1.0:
 
 - initial release

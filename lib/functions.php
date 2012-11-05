@@ -121,7 +121,7 @@
 			$subject = elgg_echo("uservalidationbyadmin:notify:validate:subject", array($site->name));
 			$msg = elgg_echo("uservalidationbyadmin:notify:validate:message", array($user->name, $site->name, $site->url));
 			
-			$result = notify_user($user->getGUID(), $subject, $msg, null, "email");
+			$result = notify_user($user->getGUID(), $site->getGUID(), $subject, $msg, null, "email");
 		}
 		
 		return $result;
