@@ -9,6 +9,7 @@ $language = array (
   'uservalidationbyadmin:settings:admin_notify:weekly' => 'Wekelijks',
   'uservalidationbyadmin:settings:admin_notify:none' => 'Geen berichten',
   'uservalidationbyadmin_pam_handler:failed' => 'Je account moet nog worden gevalideerd door een beheerder. Je ontvangt een bericht zodra dit is gedaan',
+  'uservalidationbyadmin:login:error' => 'Je account moet nog worden gevalideerd door een beheerder. Je ontvangt een bericht zodra dit is gedaan',
   'admin:users:pending_approval' => 'Goedkeuring vereist',
   'uservalidationbyadmin:pending_approval:description' => 'Hieronder vind je een lijst met gebruikers welke wachten op validatie voordat ze gebruik kunnen maken van de community',
   'uservalidationbyadmin:pending_approval:title' => 'Gebruikers in afwachting van validatie',

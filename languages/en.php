@@ -16,6 +16,7 @@
 		
 		// login
 		'uservalidationbyadmin_pam_handler:failed' => "Your account needs to be validated by an administrator, you'll be notified when this happens",
+		'uservalidationbyadmin:login:error' => "Your account needs to be validated by an administrator, you'll be notified when this happens",
 		
 		// listing
 		'admin:users:pending_approval' => "Pending approval",
