@@ -175,7 +175,7 @@
 							$admin->name,
 							$user_count,
 							$site->name,
-							$site->getURL() . "admin/users/pending_approval"
+							$site->url . "admin/users/pending_approval"
 						));
 						
 						notify_user($admin->getGUID(), $site->getGUID(), $subject, $msg, null, "email");

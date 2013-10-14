@@ -16,6 +16,11 @@
 				// this user needs validation
 				$user->admin_validated = false;
 				
+				// check who to notify
+				if ($USERVALIDATIONBYADMIN_ADMIN_NOTIFY_SETTING == "direct") {
+					uservalidationbyadmin_notify_admins();
+				}
+				
 				// check if we need to disable the user
 				if($user->isEnabled()){
 					$user->disable();
@@ -55,7 +60,7 @@
 	
 	/**
 	 * Adjust the error message from the PAM handler (to be translated)
-	 * 
+	 *
 	 * @param string $hook
 	 * @param string $type
 	 * @param string $return_value
