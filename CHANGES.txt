@@ -5,6 +5,7 @@ x.x:
 - fixed: serious security issue with authentication
 - fixed: missing translation key
 - fixed: direct admin notification doesn't work
+- changed: README.txt to README.md for GitHub readability
 
 1.0 (2012-06-05):
 
