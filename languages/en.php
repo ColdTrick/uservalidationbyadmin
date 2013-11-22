@@ -14,6 +14,10 @@
 		'uservalidationbyadmin:settings:admin_notify:weekly' => "Weekly",
 		'uservalidationbyadmin:settings:admin_notify:none' => "No notification",
 		
+		// user settings
+		'uservalidationbyadmin:usersettings:nonadmin' => "Only site administrators have settings for this plugin.",
+		'uservalidationbyadmin:usersettings:notify' => "I want to receive notifications about pending approvals",
+		
 		// login
 		'uservalidationbyadmin_pam_handler:failed' => "Your account needs to be validated by an administrator, you'll be notified when this happens",
 		'uservalidationbyadmin:login:error' => "Your account needs to be validated by an administrator, you'll be notified when this happens",

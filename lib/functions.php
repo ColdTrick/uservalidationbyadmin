@@ -132,10 +132,10 @@
 		return $result;
 	}
 	
-	function uservalidationbyadmin_notify_admins(){
+	function uservalidationbyadmin_notify_admins() {
 		global $USERVALIDATIONBYADMIN_ADMIN_NOTIFY_SETTING;
 		
-		if(!empty($USERVALIDATIONBYADMIN_ADMIN_NOTIFY_SETTING) && ($USERVALIDATIONBYADMIN_ADMIN_NOTIFY_SETTING != "none")){
+		if (!empty($USERVALIDATIONBYADMIN_ADMIN_NOTIFY_SETTING) && ($USERVALIDATIONBYADMIN_ADMIN_NOTIFY_SETTING != "none")) {
 			// make sure we can see every user
 			$hidden = access_get_show_hidden_status();
 			access_show_hidden_entities(true);
@@ -143,7 +143,7 @@
 			// get selection options
 			$options = uservalidationbyadmin_get_selection_options(true);
 			
-			if($user_count = elgg_get_entities_from_relationship($options)){
+			if ($user_count = elgg_get_entities_from_relationship($options)) {
 				$site = elgg_get_site_entity();
 				
 				// there are unvalidated users, now find the admins to notify
@@ -168,17 +168,21 @@
 				$admins = elgg_trigger_plugin_hook("notify_admin", "uservalidationbyadmin", $params, $admins);
 				
 				// notify the admins
-				if(!empty($admins)){
-					foreach($admins as $admin){
-						$subject = elgg_echo("uservalildationbyadmin:notify:admin:subject");
-						$msg = elgg_echo("uservalildationbyadmin:notify:admin:message", array(
-							$admin->name,
-							$user_count,
-							$site->name,
-							$site->url . "admin/users/pending_approval"
-						));
-						
-						notify_user($admin->getGUID(), $site->getGUID(), $subject, $msg, null, "email");
+				if (!empty($admins)) {
+					foreach ($admins as $admin) {
+						// does the admin have notifications disabled
+						if (elgg_get_plugin_user_setting("notify", $admin->getGUID(), "uservalidationbyadmin") != "no") {
+							
+							$subject = elgg_echo("uservalildationbyadmin:notify:admin:subject");
+							$msg = elgg_echo("uservalildationbyadmin:notify:admin:message", array(
+								$admin->name,
+								$user_count,
+								$site->name,
+								$site->url . "admin/users/pending_approval"
+							));
+							
+							notify_user($admin->getGUID(), $site->getGUID(), $subject, $msg, null, "email");
+						}
 					}
 				}
 			}
@@ -187,3 +191,4 @@
 			access_show_hidden_entities($hidden);
 		}
 	}
+	

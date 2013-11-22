@@ -1,5 +1,7 @@
 <?php
 $language = array (
+  'uservalidationbyadmin:usersettings:nonadmin' => 'Alleen site beheerder hebben instellingen voor deze plugin.',
+  'uservalidationbyadmin:usersettings:notify' => 'Ik wil notificaties ontvangen over goed te keuren gebruikers',
   'uservalidationbyadmin' => 'Gebruiker validatie door de beheerder',
   'uservalidationbyadmin:validate' => 'Valideer',
   'uservalidationbyadmin:validate:confirm' => 'Weet je zeker dat je deze gebruiker wilt valideren?',

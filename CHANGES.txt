@@ -1,6 +1,7 @@
 = Version history =
 x.x:
 
+- added: options for admin to opt-out of notifications #1
 - fixed: confirmation email not sending
 - fixed: serious security issue with authentication
 - fixed: missing translation key
