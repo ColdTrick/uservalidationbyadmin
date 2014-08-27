@@ -1,6 +1,8 @@
 = Version history =
+
 x.x:
 
+- applied coding standards
 - added: options for admin to opt-out of notifications #1
 - fixed: confirmation email not sending
 - fixed: serious security issue with authentication

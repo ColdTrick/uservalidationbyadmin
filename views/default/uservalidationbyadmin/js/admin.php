@@ -4,20 +4,20 @@
 //<script>
 elgg.provide("elgg.uservalidationbyadmin");
 
-elgg.uservalidationbyadmin.check_all = function(){
-	if($(this).is(":checked")){
+elgg.uservalidationbyadmin.check_all = function() {
+	if ($(this).is(":checked")) {
 		// so check everything
 		$("#uservalidationbyadmin-wrapper input[type='checkbox'][name='user_guids[]']").attr("checked", "checked");
-	} else{
+	} else {
 		// uncheck everything
 		$("#uservalidationbyadmin-wrapper input[type='checkbox'][name='user_guids[]']").removeAttr("checked");
 	}
 }
 
-elgg.uservalidationbyadmin.bulk_action = function(){
+elgg.uservalidationbyadmin.bulk_action = function() {
 	$checked = $("#uservalidationbyadmin-wrapper input[type='checkbox'][name='user_guids[]']:checked");
 
-	if($checked.length > 0){
+	if ($checked.length > 0) {
 		$href = $(this).attr("href");
 		$href = $href + "&" + $checked.serialize();
 
@@ -28,7 +28,7 @@ elgg.uservalidationbyadmin.bulk_action = function(){
 	}
 }
 
-elgg.uservalidationbyadmin.init = function(){
+elgg.uservalidationbyadmin.init = function() {
 	// (un)check all users
 	$("#uservalidationbyadmin-check-all").live("click", elgg.uservalidationbyadmin.check_all);
 
