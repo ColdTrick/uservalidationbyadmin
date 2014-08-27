@@ -179,9 +179,9 @@ function uservalidationbyadmin_notify_validate_user(ElggUser $user) {
  * @return void
  */
 function uservalidationbyadmin_notify_admins() {
-	global $USERVALIDATIONBYADMIN_ADMIN_NOTIFY_SETTING;
 	
-	if (!empty($USERVALIDATIONBYADMIN_ADMIN_NOTIFY_SETTING) && ($USERVALIDATIONBYADMIN_ADMIN_NOTIFY_SETTING != "none")) {
+	$notify_admins = uservalidationbyadmin_get_admin_notification_setting();
+	if (!empty($notify_admins) && ($notify_admins != "none")) {
 		// make sure we can see every user
 		$hidden = access_get_show_hidden_status();
 		access_show_hidden_entities(true);
@@ -238,4 +238,23 @@ function uservalidationbyadmin_notify_admins() {
 		access_show_hidden_entities($hidden);
 	}
 }
+
+/**
+ * Check the plugin setting for when admins should be notified
+ *
+ * @return bool|string
+ */
+function uservalidationbyadmin_get_admin_notification_setting() {
+	static $result;
 	
+	if (!isset($result)) {
+		$result = false;
+		
+		$setting = elgg_get_plugin_setting("admin_notify", "uservalidationbyadmin");
+		if (!empty($setting)) {
+			$result = $setting;
+		}
+	}
+	
+	return $result;
+}
