@@ -1,5 +1,6 @@
 <?php
-$language = array (
+
+return array (
   'uservalidationbyadmin:usersettings:nonadmin' => 'Alleen site beheerder hebben instellingen voor deze plugin.',
   'uservalidationbyadmin:usersettings:notify' => 'Ik wil notificaties ontvangen over goed te keuren gebruikers',
   'uservalidationbyadmin' => 'Gebruiker validatie door de beheerder',
@@ -33,4 +34,3 @@ Ga naar %s om de gebruikers te valideren/verwijderen.',
   'uservalidationbyadmin:actions:bulk_action:success:delete' => 'De gebruikers zijn verwijderd',
   'uservalidationbyadmin:actions:bulk_action:success:validate' => 'De gebruikers zijn gevalideerd',
 );
-add_translation("nl", $language);

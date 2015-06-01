@@ -30,11 +30,11 @@ elgg.uservalidationbyadmin.bulk_action = function() {
 
 elgg.uservalidationbyadmin.init = function() {
 	// (un)check all users
-	$("#uservalidationbyadmin-check-all").live("click", elgg.uservalidationbyadmin.check_all);
+	$(document).on("click", "#uservalidationbyadmin-check-all", elgg.uservalidationbyadmin.check_all);
 
 	// bulk actions
-	$("#uservalidationbyadmin-bulk-validate").live("click", elgg.uservalidationbyadmin.bulk_action);
-	$("#uservalidationbyadmin-bulk-delete").live("click", elgg.uservalidationbyadmin.bulk_action);
+	$(document).on("click", "#uservalidationbyadmin-bulk-validate", elgg.uservalidationbyadmin.bulk_action);
+	$(document).on("click", "#uservalidationbyadmin-bulk-delete", elgg.uservalidationbyadmin.bulk_action);
 }
 
 elgg.register_hook_handler("init", "system", elgg.uservalidationbyadmin.init);
