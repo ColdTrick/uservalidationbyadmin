@@ -61,10 +61,11 @@ Veuillez vous connecter sur %s pour approuver/supprimer les demandes d'inscripti
 	'uservalidationbyadmin:settings:emailvalidation' => "Permettre aux administrateurs de valider directement via un lien dans l'email",
 	'uservalidationbyadmin:settings:admin:additionalinfo' => "Ajouter des informations complémentaires pour l'admin dans l'email de validation",
 	'uservalidationbyadmin:settings:user:additionalinfo' => "Ajouter des informations complémentaires pour l'utilisateur dans l'email de confirmation après validation",
-	'uservalidationbyadmin:settings:yes' => "Oui",
-	'uservalidationbyadmin:settings:no' => "Non",
+	'uservalidationbyadmin:userinfo' => "Demande de %s : username %s, email %s",
+	'uservalidationbyadmin:userinfo:geo' => "Demande de %s : username %s, email %s, IP %s, Geo %s",
+	'uservalidationbyadmin:user_validation_link' => "Lien de confirmation immédiate du compte de %s : %s",
 	
-		'uservalildationbyadmin:notify:admin:message:alternate' => "Bonjour %s,
+		'uservalidationbyadmin:notify:admin:message:alternate' => "Bonjour %s,
 
 Il y a %s demandes d'inscription en attente sur %s :
 %s
@@ -80,6 +81,8 @@ Email d'inscription : %s
 Mot de passe : celui que vous avez choisi lors de votre demande d'inscription
 
 Veuillez vous rendre sur %s pour commencer.",
+	
+	'uservalidationbyadmin:actions:validate:error:code' => "Code de validation incorrect",
 	
 );
 

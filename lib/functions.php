@@ -167,6 +167,12 @@ function uservalidationbyadmin_notify_validate_user(ElggUser $user) {
 		$subject = elgg_echo("uservalidationbyadmin:notify:validate:subject", array($site->name));
 		$msg = elgg_echo("uservalidationbyadmin:notify:validate:message", array($user->name, $site->name, $site->url));
 		
+		// Add more information if asked to
+		$user_notification_info = elgg_get_plugin_setting("user_notification_info", "uservalidationbyadmin");
+		if ($user_notification_info == 'yes') {
+			$msg = elgg_echo("uservalidationbyadmin:notify:validate:message:alternate", array($user->name, $site->name, $user->username, $user->email, $site->url));
+		}
+		
 		$result = notify_user($user->getGUID(), $site->getGUID(), $subject, $msg, null, "email");
 	}
 	
@@ -226,23 +232,30 @@ function uservalidationbyadmin_notify_admins() {
 					$user_list = '';
 					foreach ($pending_users as $pending_user) {
 						if ($admin_notification_info == 'yes') {
-							$user_list .= elgg_echo('', array(
-										
+							// Note : use 'uservalidationbyadmin:userinfo:geo' to include also IP and guessed geolocation
+							//$geoloc = uservalidationbyadmin_detect_geoloc(); // @TODO : implement only for immediate validation - or store registration IP
+							// $ip_address = $_SERVER['REMOTE_ADDR'];
+							$user_list .= "\n" . elgg_echo('uservalidationbyadmin:userinfo', array(
+										$pending_user->name,
+										$pending_user->username,
+										$pending_user->email,
+										//$ip_address,
+										//$geoloc,
 									)
 								);
 						}
 						if ($admin_validation_link == 'yes') {
-							$user_validation_link = elgg_get_site_url() . '';
-							$user_list .= elgg_echo('uservalidationbyadmin:user_validation_link', array($user_validation_link));
+							$user_code = uservalidationbyadmin_generate_code($pending_user->guid, $pending_user->email);
+							$user_validation_link = elgg_get_site_url() . 'uservalidationbyadmin/validate?u=' . $pending_user->guid . '&c=' . $user_code;
+							$user_list .= "\n" . elgg_echo('uservalidationbyadmin:user_validation_link', array($pending_user->name, $user_validation_link));
 						}
+						$user_list .= "\n";
 					}
 				}
-
 				
 				foreach ($admins as $admin) {
 					// does the admin have notifications disabled
 					if (elgg_get_plugin_user_setting("notify", $admin->getGUID(), "uservalidationbyadmin") != "no") {
-						
 						$subject = elgg_echo("uservalildationbyadmin:notify:admin:subject");
 						$msg = elgg_echo("uservalildationbyadmin:notify:admin:message", array(
 							$admin->name,
@@ -253,11 +266,11 @@ function uservalidationbyadmin_notify_admins() {
 						
 						// Alternate message with detailed list and/or direct email validation link (without log in)
 						if (!empty($user_list)) {
-							$msg = elgg_echo("uservalildationbyadmin:notify:admin:message:alternate", array(
+							$msg = elgg_echo("uservalidationbyadmin:notify:admin:message:alternate", array(
 							$admin->name,
 							$user_count,
-							$user_list,
 							$site->name,
+							$user_list,
 							$site->url . "admin/users/pending_approval"
 						));
 						}
@@ -292,3 +305,27 @@ function uservalidationbyadmin_get_admin_notification_setting() {
 	
 	return $result;
 }
+
+// Generate unique user validation code
+function uservalidationbyadmin_generate_code($user_guid, $email_address) {
+	$site_url = elgg_get_site_url();
+	// Note I bind to site URL, this is important on multisite!
+	return md5($user_guid . $email_address . $site_url . get_site_secret());
+}
+
+// Returns guessed geolocation
+// Note : this works only for direct validation (as it depends on server global vars)
+function uservalidationbyadmin_detect_geoloc() {
+		// IP detection
+		$ip_address = $_SERVER['REMOTE_ADDR'];
+		$geoloc = "http://www.geobytes.com/IpLocator.htm?GetLocation&template=php3.txt&IpAddress=".$ip_address;
+		$geotags = get_meta_tags($geoloc);
+		$geocountry = $geotags['country'];
+		$georegion = $geotags['region'];
+		$geocity = $geotags['city'];
+		$geocertainty = $geotags['certainty'];
+		$geostring = $ip_address." ; ".$geocountry." ; ".$georegion." ; ".$geocity." ; ".$geocertainty;
+		return $geostring;
+}
+
+

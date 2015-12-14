@@ -53,4 +53,34 @@ Please visit %s in order to approve/delete the users.",
 	'uservalidationbyadmin:actions:bulk_action:error:invalid_action' => "The selected action is invalid",
 	'uservalidationbyadmin:actions:bulk_action:success:delete' => "Successfully deleted the users",
 	'uservalidationbyadmin:actions:bulk_action:success:validate' => "Successfully validated the users",
+	
+	
+	'uservalidationbyadmin:admin:listnotified' => "List of administrators and their notification settings",
+	'uservalidationbyadmin:admin:usersettings' => "edit settings",
+	'uservalidationbyadmin:settings:emailvalidation' => "Allow admins to validate account through direct email validation link",
+	'uservalidationbyadmin:settings:admin:additionalinfo' => "Add additional information about user in notification email",
+	'uservalidationbyadmin:settings:user:additionalinfo' => "Add additional information for the user in confirmation email (after validation)",
+	'uservalidationbyadmin:userinfo' => "Pending approval for %s : username %s, email %s",
+	'uservalidationbyadmin:userinfo:geo' => "Pending approval for %s : username %s, email %s, IP %s, Geo %s",
+	'uservalidationbyadmin:user_validation_link' => "Immediate confirmation link for %s : %s",
+	
+		'uservalidationbyadmin:notify:admin:message:alternate' => "Hi %s,
+
+%s users are awaiting your approval on %s:
+%s
+
+Please visit %s in order to approve/delete the users.",
+	
+	'uservalidationbyadmin:notify:validate:message:alternate' => "Hi %s,
+
+Your account on %s has been validated, you can now start using the site.
+
+Username: %s
+Registration email: %s
+Password: the one you have chosen when you registered
+
+Go to: %s to start your experience.",
+	
+	'uservalidationbyadmin:actions:validate:error:code' => "Validation code is not valid",
+	
 );
