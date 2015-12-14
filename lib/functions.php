@@ -216,6 +216,29 @@ function uservalidationbyadmin_notify_admins() {
 			
 			// notify the admins
 			if (!empty($admins)) {
+				$admin_validation_link = elgg_get_plugin_setting("admin_validation_link", "uservalidationbyadmin");
+				$admin_notification_info = elgg_get_plugin_setting("admin_notification_info", "uservalidationbyadmin");
+				// Prepare detailed user list
+				if (($admin_notification_info == 'yes') || ($admin_validation_link == 'yes')) {
+					$options['count'] = false;
+					$options['limit'] = false;
+					$pending_users = elgg_get_entities_from_relationship($options);
+					$user_list = '';
+					foreach ($pending_users as $pending_user) {
+						if ($admin_notification_info == 'yes') {
+							$user_list .= elgg_echo('', array(
+										
+									)
+								);
+						}
+						if ($admin_validation_link == 'yes') {
+							$user_validation_link = elgg_get_site_url() . '';
+							$user_list .= elgg_echo('uservalidationbyadmin:user_validation_link', array($user_validation_link));
+						}
+					}
+				}
+
+				
 				foreach ($admins as $admin) {
 					// does the admin have notifications disabled
 					if (elgg_get_plugin_user_setting("notify", $admin->getGUID(), "uservalidationbyadmin") != "no") {
@@ -227,6 +250,17 @@ function uservalidationbyadmin_notify_admins() {
 							$site->name,
 							$site->url . "admin/users/pending_approval"
 						));
+						
+						// Alternate message with detailed list and/or direct email validation link (without log in)
+						if (!empty($user_list)) {
+							$msg = elgg_echo("uservalildationbyadmin:notify:admin:message:alternate", array(
+							$admin->name,
+							$user_count,
+							$user_list,
+							$site->name,
+							$site->url . "admin/users/pending_approval"
+						));
+						}
 						
 						notify_user($admin->getGUID(), $site->getGUID(), $subject, $msg, null, "email");
 					}
