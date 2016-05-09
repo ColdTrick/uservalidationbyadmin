@@ -10,6 +10,8 @@ if (!empty($user_guid)) {
 	if (!empty($user)) {
 		// we got a user, so validate him/her
 		$user->admin_validated = true;
+		$user->validated = true;
+		$user->validated_method = 'admin';
 		
 		// do we also need to enable the user
 		if (!$user->isEnabled()) {
