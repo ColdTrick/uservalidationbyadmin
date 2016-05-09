@@ -62,7 +62,7 @@ function uservalidationbyadmin_page_handler($page) {
 	// Check that this functionnality is enabled
 	$admin_validation_link = elgg_get_plugin_setting("admin_validation_link", "uservalidationbyadmin");
 	if ($admin_validation_link != 'yes') {
-		$forward();
+		forward();
 	}
 	
 	if (isset($page[0]) && $page[0] == 'validate') {
@@ -81,6 +81,9 @@ function uservalidationbyadmin_page_handler($page) {
 				if ($user_code == $code) {
 					// we got a user, so validate him/her
 					$user->admin_validated = true;
+					// Also validate using uservalidationbyemail metadata in case it is enabled
+					$user->validated = true;
+					$user->validated_method = 'admin';
 					// do we also need to enable the user
 					if (!$user->isEnabled()) {
 						$user->enable();
