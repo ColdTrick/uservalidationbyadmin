@@ -21,9 +21,6 @@ function uservalidationbyadmin_init() {
 	// register pam handler to check authentication
 	register_pam_handler("uservalidationbyadmin_pam_handler", "required");
 	
-	// extend admin js
-	elgg_extend_view("js/admin", "js/uservalidationbyadmin/admin");
-	
 	// register events
 	elgg_register_event_handler("login", "user", "uservalidationbyadmin_login_event");
 	elgg_register_event_handler("enable", "user", "\ColdTrick\UserValidationByAdmin\User::enableUser");

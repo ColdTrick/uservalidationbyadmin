@@ -1,6 +1,8 @@
 <?php
 
-	// make sure we can see everything
+elgg_require_js('uservalidationbyadmin/admin');
+
+// make sure we can see everything
 $hidden = access_get_show_hidden_status();
 access_show_hidden_entities(true);
 
