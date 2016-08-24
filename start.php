@@ -26,6 +26,7 @@ function uservalidationbyadmin_init() {
 	
 	// register events
 	elgg_register_event_handler("login", "user", "uservalidationbyadmin_login_event");
+	elgg_register_event_handler("enable", "user", "\ColdTrick\UserValidationByAdmin\User::enableUser");
 	
 	// register hooks
 	elgg_register_plugin_hook_handler("register", "user", "uservalidationbyadmin_register_user_hook");
