@@ -83,16 +83,24 @@ function uservalidationbyadmin_get_selection_options($count = false) {
 		"relationship_guid" => elgg_get_site_entity()->getGUID(),
 		"inverse_relationship" => true,
 		"count" => (bool) $count,
-		"metadata_name_value_pairs" => array(
-			"name" => "admin_validated",
-			"value" => 0	// @todo this should be false, but Elgg doesn't support that (yet)
-		)
+		"metadata_name_value_pairs" => [
+			[
+				"name" => "admin_validated",
+				"value" => 0,	// @todo this should be false, but Elgg doesn't support that (yet)
+			],
+		],
 	);
 	
 	// extra options
 	if (!elgg_is_active_plugin("uservalidationbyemail")) {
 		// uservalidationbyemail handles part of this proccess
 		$result["wheres"] = array("e.enabled = 'no'");
+	} else {
+		$result['metadata_name_value_pairs'][] = [
+			'name' => 'validated',
+			'value' => 0,
+			'operand' => '<>',
+		];
 	}
 	
 	return $result;
