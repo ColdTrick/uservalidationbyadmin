@@ -9,13 +9,13 @@ define(['jquery', 'elgg'], function($, elgg) {
 			// uncheck everything
 			$("#uservalidationbyadmin-wrapper input[type='checkbox'][name='user_guids[]']").prop("checked", false);
 		}
-	}
+	};
 	
 	elgg.uservalidationbyadmin.bulk_action = function() {
-		$checked = $("#uservalidationbyadmin-wrapper input[type='checkbox'][name='user_guids[]']:checked");
+		var $checked = $("#uservalidationbyadmin-wrapper input[type='checkbox'][name='user_guids[]']:checked");
 	
 		if ($checked.length > 0) {
-			$href = $(this).attr("href");
+			var $href = $(this).attr("href");
 			$href = $href + "&" + $checked.serialize();
 	
 			$(this).attr("href", $href);
@@ -23,7 +23,9 @@ define(['jquery', 'elgg'], function($, elgg) {
 			alert(elgg.echo("uservalidationbyadmin:bulk_action:select"));
 			return false;
 		}
-	}
+		
+		return undefined;
+	};
 	
 	elgg.uservalidationbyadmin.init = function() {
 		// (un)check all users
@@ -32,7 +34,7 @@ define(['jquery', 'elgg'], function($, elgg) {
 		// bulk actions
 		$(document).on("click", "#uservalidationbyadmin-bulk-validate", elgg.uservalidationbyadmin.bulk_action);
 		$(document).on("click", "#uservalidationbyadmin-bulk-delete", elgg.uservalidationbyadmin.bulk_action);
-	}
+	};
 	
 	elgg.register_hook_handler("init", "system", elgg.uservalidationbyadmin.init);
 });
