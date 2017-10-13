@@ -175,7 +175,7 @@ function uservalidationbyadmin_notify_validate_user(ElggUser $user) {
 		$subject = elgg_echo("uservalidationbyadmin:notify:validate:subject", array($site->name));
 		$msg = elgg_echo("uservalidationbyadmin:notify:validate:message", array($user->name, $site->name, $site->url));
 		
-		$result = notify_user($user->getGUID(), $site->getGUID(), $subject, $msg, null, "email");
+		$result = notify_user($user->getGUID(), $site->getGUID(), $subject, $msg, array(), "email");
 	}
 	
 	return $result;
