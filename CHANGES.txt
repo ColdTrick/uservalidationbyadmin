@@ -1,6 +1,10 @@
 Version history
 ===============
 
+4.0.2 (2019-09-03):
+
+- several small chores/fixes
+
 4.0.1 (2019-09-03):
 
 - fixed: notify_user call now works on Elgg 2.x
